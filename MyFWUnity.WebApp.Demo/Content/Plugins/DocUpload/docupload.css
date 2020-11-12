@@ -1,0 +1,162 @@
+﻿
+.upload-doc-index {
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 20px;
+}
+
+.upload-doc-index p {
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	margin-top: 20px;
+	color: #9E9DB2;
+}
+
+.upload-doc-index p a {
+	color: #BC5A6B;
+	text-decoration: none;
+}
+
+.upload-doc-left {
+	width: 100%;
+	float: left;
+}
+
+.upload-doc-right {
+	width: 100%;
+	color: #9E9DB2;
+	float: left;
+	padding-left: 20px;
+}
+
+.doc-label {
+	width: 50%;
+	line-height: 40px;
+	float: left;
+}
+
+.doc-label label, .doc-group-user label {
+	width: 70px;
+	font-size: 14px;
+	float: left;
+}
+
+.doc-label-content, .doc-group-user-content {
+	float: left;
+	width: 300px;
+}
+
+.doc-label-content input {
+	width: 100%;
+	background: #F8F9FB;
+	border-radius: 5px;
+	border: none;
+	height: 40px;
+}
+
+.doc-common-label {
+	width: 100%;
+	height: 50px;
+	padding: 10px 0;
+}
+
+.doc-common-label a {
+	display: inline-block;
+	padding: 0px 15px;
+	background: #F8F9FB;
+	border-radius: 5px;
+	border: none;
+	margin-right: 8px;
+	text-decoration: none;
+	color: #9E9DB2;
+}
+
+.doc-group-user {
+	width: 50%;
+	float: left;
+	line-height: 40px;
+}
+
+.doc-group-user-content select {
+	width: 115px;
+	display: inline-block;
+}
+
+.doc-group-user-content select:nth-child(1) {
+	margin-right: 5px;
+}
+
+.doc-check-user {
+	overflow: auto;
+	width: 100%;
+	height: 60px;
+}
+
+.doc-check-user span {
+	display: inline-block;
+	background: #F8F9FB;
+	border-radius: 5px;
+	border: none;
+	margin-right: 8px;
+	margin-top: 8px;
+	position: relative;
+	font-size: 12px;
+	overflow: hidden;
+	white-space: nowrap;
+	line-height: 30px;
+	padding: 5px 15px;
+	float: left;
+	color: #5f5f73;
+}
+
+.doc-check-user span a {
+	position: absolute;
+	right: 3px;
+	top: -9px;
+	text-decoration: none;
+	color: #9E9DB2
+}
+
+.doc-checked-user-last {
+	margin-top: 10px;
+	width: 100%;
+}
+
+.doc-checked-user-last select {
+	width: 100%;
+}
+
+.doc-upload-btn {
+	width: 100%;
+	text-align: right;
+	margin-top: 58px;
+}
+
+.doc-upload-btn a {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.doc-tags {
+	text-indent: 5px;
+}
+
+.kv-upload-progress {
+	display: none;
+}
+
+.file-preview {
+	border: 1px solid #ddd;
+	height: 240px;
+position:relative;
+}
+
+.file-drop-zone {
+	margin: 0px;
+	padding: 0px;
+	height: 230px;
+}
+
+#uploadfileinput{display:none;}

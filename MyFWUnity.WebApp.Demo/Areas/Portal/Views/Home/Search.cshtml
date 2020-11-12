@@ -1,0 +1,239 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Layout/css")
+    @Scripts.Render("~/Layout/js")
+    <link href="~/Content/Fonts/css/font-awesome.min.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/Plugins/custom-pagination/custom-pagination.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/custom-pagination/custom-pagination.js"></script>
+    <link href="~/Areas/Portal/Content/CSS/search.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <p>上海市浦东新区建筑信息模型应用技术协会</p>
+            <span><a href="/Portal/Account/Login">会员登录</a><em>|</em><a href="#">关于&nbsp;About</a></span>
+        </div>
+
+    </div>
+
+    <div class="header-search">
+        <div class="search-main ">
+            <div class="clearfix">
+                <div class="search-logo">
+                  <a href="/Portal/Home/Index"><img src="~/Areas/Portal/Content/Images/search-logo.png" /></a>  
+                </div>
+                <div class="search-body clearfix">
+                    <input type="hidden" id="searchval" value="@ViewBag.SearchText" />
+                    <input placeholder="请输入关键字搜索" type="text" id="search-ipt" />
+                    <span></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="search-content">
+        <div class="search-nav">
+            <div class="nav-content">
+                <ul class="clearfix nav-list">
+                    <li class="def n-zczn" data-type="政策指南">政策指南<em>(0)</em></li>
+                    <li class="n-bimdt" data-type="BIM动态">BIM动态<em>(0)</em></li>
+                    <li class="n-xmzs" data-type="项目展示">项目展示<em>(0)</em></li>
+                    <li class="n-xsjl" data-type="学术交流">学术交流<em>(0)</em></li>
+                    <li class="n-xhhd" data-type="协会活动">协会活动<em>(0)</em></li>
+                    <li class="n-hyzj" data-type="会员之家">会员之家<em>(0)</em></li>
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="nav-filtr">
+            <div class="nf-main clearfix">
+                <p>已为你找到站内相关结果约<span class="s-count"></span>个</p>
+                <p class="filtr">
+                    <img src="/Areas/Portal/Content/Images/search-desc.png" width="30" />
+                    <a class="desc-c" data-type="date" href="javascript:;">按发布时间排序</a>
+                    <span class="f-desc">
+                        <a href="javascript:;">按点击量排序</a>
+                    </span>
+                </p>
+            </div>
+
+        </div>
+        <div class="c-body">
+            <div class="c-main clearfix">
+                <div class="c-left">
+                    <div class="c-content">
+                        <div class="c-list">
+
+
+
+                        </div>
+                        <div class="page" id="page"></div>
+                    </div>
+                </div>
+                <div class="c-right">
+                    <h1>为您推荐</h1>
+                    <ul>
+                        <li><a href="#" target="_blank">第一届bim大赛正式启动</a></li>
+                        <li><a href="#" target="_blank">最新bim发展报告</a></li>
+                        <li><a href="#" target="_blank">bim项目应用案例</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var newsClass = "政策指南";
+        var order = "date";
+        var box = null;
+        function SearchLoad(txt) {
+            AjaxCustom.getAjax("/api/News/QueryPageBySearch?condition=" + txt + "&pageIndex=1&pageSize=5&newsClass=" + newsClass + "&order=" + order, function (res) {
+                if (res) {
+                    $(".s-count").html(res.Total);
+                    $(".n-zczn em").html("(" + res.ZCZN + ")");
+                    $(".n-bimdt em").html("(" + res.BIMDT + ")");
+                    $(".n-xmzs em").html("(" + res.XMZS + ")");
+                    $(".n-xsjl em").html("(" + res.XSJL + ")");
+                    $(".n-xhhd em").html("(" + res.XHHD + ")");
+                    $(".n-hyzj em").html("(" + res.HYZJ + ")");
+                    var pagetotal = 0;
+                    switch (newsClass) {
+                        case "会员之家":
+                            pagetotal = res.HYZJ;
+                            break;
+                        case "协会活动":
+                            pagetotal = res.XHHD;
+                            break;
+                        case "学术交流":
+                            pagetotal = res.XSJL;
+                            break;
+                        case "项目展示":
+                            pagetotal = res.XMZS;
+                            break;
+                        case "BiM动态":
+                            pagetotal = res.BIMDT;
+                            break;
+                        case "政策指南":
+                            pagetotal = res.ZCZN;
+                            break;
+                    }
+
+                    LoadNews(res.NewsDataInfos, pagetotal, 1);
+
+                }
+            })
+
+        }
+        function LoadNewsPage(pageindex) {
+            var txt = $("#search-ipt").val();
+            if (txt != "") {
+                AjaxCustom.getAjax("/api/News/QueryPage?condition=" + txt + "&pageIndex=" + pageindex + "&pageSize=5&newsClass=" + newsClass + "&order=" + order, function (res) {
+                    if (res) {
+                        LoadNews(res.rows, res.total, pageindex);
+                    }
+                })
+            }
+        }
+
+        function LoadNews(newsList, total, pageindex) {
+            var html = '';
+            $.each(newsList, function (key, item) {
+                html += '<div class="c-item">';
+                html += '<h1>' + item.Title + '</h1>';
+                html += ' <div>';
+                html += '  <p>';
+                html += item.Description;
+                html += '  </p>';
+                html += '  <div class="ci-date">';
+                html += '    <span><em class="fa fa-calendar"></em>' + new Date(item.CreateDate).Format("yyyy-MM-dd") + '</span>';
+                html += '     <span><em class="fa fa-eye"></em><em class="read-count"> (' + item.ReadCount + ')</em></span>';
+                html += '     <a href="/Portal/Home/NewsDetail?id=' + item.ID + '" target="_blank"><em class="fa fa-external-link"></em> 查看详情</a>';
+                html += '    </div>';
+                html += '  </div>';
+                html += ' </div>';
+            });
+            $(".c-list").html(html);
+            if (total < 5) {
+                $("#page").html('');
+            }
+            else {
+                box.options.total = Math.ceil(total / 5);
+                box.init();
+                $(".custom-pagination ul li").removeClass("current-page");
+                $(".custom-pagination ul li:eq(" + (parseInt(pageindex) - 1) + ")").addClass("current-page");
+            }
+        }
+
+        $(function () {
+            box = new CustomPagination('#page', {
+                inupt_forward: 'no',//是否开启[输入跳转]
+                total: 0,//总页数
+                count: 6,//显示的页码个数，多余页码会用...代替
+                changePage: function (pageNum) {//切换页码成功回调
+                    LoadNewsPage(pageNum);
+                }
+            });
+            $("#search-ipt").val($("#searchval").val());
+            $("#search-ipt").focus();
+            var txt = $("#search-ipt").val();
+            if (txt != "") {
+                SearchLoad(txt);
+            }
+            $("#search-ipt").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var txt = $(this).val();
+                    if (txt != "") {
+                        SearchLoad(txt);
+                    }
+                }
+            });
+            $(".search-body span").click(function () {
+                var txt = $("#search-ipt").val();
+                if (txt != "") {
+                    SearchLoad(txt);
+                }
+            });
+
+            $(".nav-list li").click(function () {
+                $(".nav-list li").removeClass("def");
+                $(this).addClass("def");
+                var type = $(this).data("type");
+                newsClass = type;
+                LoadNewsPage(1);
+            })
+
+
+            $(".desc-c").click(function () {
+                $(".f-desc").slideToggle();
+            })
+            $(".f-desc").click(function () {
+                if ($(".desc-c").data("type") == "date") {
+                    $(".desc-c").html("按点击量排序");
+                    $(".f-desc a").html("按发布时间排序");
+                    $(".desc-c").data("type", "readcount");
+                    order = "readcount";
+                }
+                else {
+                    $(".desc-c").html("按发布时间排序");
+                    $(".f-desc a").html("按点击量排序");
+                    $(".desc-c").data("type", "date");
+                    order = "date";
+                }
+                $(".f-desc").slideToggle();
+                LoadNewsPage(1);
+            })
+        })
+    </script>
+</body>
+</html>

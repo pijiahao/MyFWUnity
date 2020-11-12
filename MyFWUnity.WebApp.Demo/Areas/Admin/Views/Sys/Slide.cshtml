@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "轮播管理";
+}
+<script src="~/Content/Plugins/UploadImage/uploadimage.js"></script>
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/Slider/QueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        <th data-field="ID" data-width="350">ID</th>
+                        <th data-field="SliderImagePath" data-formatter="operateImageFormatter">图片</th>
+                        @*<th data-field="SliderLink" >链接</th>*@
+                        <th data-field="Remark" >备注</th>
+                        <th data-field="CreateDate" data-formatter="operateDateFormatter">创建时间</th>
+                        <th data-field="" data-width="150" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="modal fade in" id="Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">轮播信息</h4>
+                </div>
+                <form id="Form" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" name="ID" value="" />
+                        <div class="form-group slider-image">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Remark"  id="Remark"></textarea>
+                            </div>
+                        </div>
+                        <input type="hidden" id="SliderImagePath" name="SliderImagePath" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default save-info">保存</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    AddTable({
+        placeholder: "搜索图片",
+        addCallback: function () {
+            $("#id").val("");
+            $("#Remark").val("");
+            $(".slider-image").uploadimage("refresh");
+            $("#SliderImagePath").val('');
+            $('#Modal').modal('show');
+        }
+    });
+    WOEvents.Update = function (row) {
+        $("#id").val(row.ID);
+        $("#Remark").val(row.Remark);
+        $("#SliderImagePath").val(row.SliderImagePath);
+        $(".slider-image").uploadimage("setImage", row.SliderImagePath);
+        $('#Modal').modal('show');
+    }
+    WOEvents.Delete = function (row) {
+        MyFWUnity.CustomCommon.Delete("User", row.ID, function () {
+            $("#table").bootstrapTable('refresh');
+        })
+    }
+
+    $(function () {
+        $(".slider-image").uploadimage({
+            text: "轮播图",
+            col: 2,
+            success: function (data) {
+                $("#SliderImagePath").val(data.url);
+            }
+        });
+        $(".save-info").click(function () {
+            MyFWUnity.CustomCommon.AddOrUpdate("Form", "Slider", null, function () {
+                $('#Modal').modal('hide');
+                $("#table").bootstrapTable('refresh');
+            })
+        });
+     
+      //  User.InitProjectAll();
+    });
+   
+
+</script>

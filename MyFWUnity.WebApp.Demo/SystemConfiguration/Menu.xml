@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menus>
+  <Menu Name="项目管理" Icon="fa-product-hunt" Href="/Admin/Project/Index" BindPermissionCode="ProjectManager" >
+  </Menu>
+  <Menu Name="用户管理" Icon="fa-user-circle-o" Href="/Admin/User/Index" BindPermissionCode="UserManager" >
+  </Menu>
+  <Menu Name="系统管理" Icon="fa-gear"  Href=""  BindPermissionCode="" >
+    <Menu Name="邮件管理"  Href="/Admin/Sys/Email"  BindPermissionCode="EmailManager" >
+    </Menu>
+    <Menu Name="系统日志"  Href="/Admin/Sys/Log"  BindPermissionCode="SystemLog" >
+    </Menu>
+    <Menu Name="系统配置"  Href="/Admin/Sys/Index"  BindPermissionCode="SystemConfig" >
+    </Menu>
+  </Menu>
+</Menus>

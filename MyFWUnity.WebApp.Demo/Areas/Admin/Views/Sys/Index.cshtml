@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "系统设置";
+}
+<style type="text/css">
+    .sys-contianer {
+        padding: 30px;
+    }
+
+    .sys-item {
+        display: flex;
+    }
+
+    .sys-contianer .sys-item:last-child {
+        border: none;
+    }
+
+    .sys-label {
+        line-height: 32px;
+        font-size: 16px;
+        text-align: center;
+        box-shadow: 2px 2px 3px #f5f5f5;
+        padding: 10px;
+        display: inline-block;
+        width: 20%;
+    }
+
+    .sys-label span {
+        display: block;
+        position: relative;
+        top: 25%;
+    }
+
+    .sys-content {
+        box-shadow: 2px 2px 3px #f5f5f5;
+        padding: 10px;
+        display: inline-block;
+        width: 80%;
+    }
+
+    .sys-item input {
+        width: 100%;
+        border: 1px solid #f5f5f5;
+        line-height: 36px;
+        font-size: 16px;
+        text-indent: 5px;
+    }
+     .sys-item textarea {
+        width: 100%;
+        border: 1px solid #f5f5f5;
+        line-height: 24px;
+        font-size: 16px;
+        text-indent: 5px;
+        height:150px;
+    }
+</style>
+<div class=" sys-contianer">
+    <div class=" sys-item">
+        <div class="sys-label">
+            <span>
+                名称
+            </span>
+        </div>
+        <div class=" sys-content">
+            <input id="PlatformName" value="" />
+        </div>
+
+    </div>
+    <div class=" sys-item">
+        <div class=" sys-label">
+            <span>
+                Logo
+            </span>
+        </div>
+        <div class=" sys-content">
+
+        </div>
+
+    </div>
+    <div class=" sys-item">
+        <div class=" sys-label">
+            <span>
+                日志配置
+            </span>
+        </div>
+        <div class=" sys-content">
+            <textarea id="LogModuleInfo"></textarea>
+        </div>
+
+    </div>
+    <div class=" sys-item">
+        <div class=" sys-label">
+            <span>
+                邮件模板
+            </span>
+        </div>
+        <div class=" sys-content">
+            <textarea id="EmailTemplate"></textarea>
+        </div>
+
+    </div>
+</div>

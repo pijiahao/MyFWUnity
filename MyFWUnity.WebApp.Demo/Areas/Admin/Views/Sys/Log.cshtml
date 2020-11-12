@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "日志管理";
+}
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/Sys/LogQueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        @*<th data-field="ID" data-width="350">ID</th>*@
+                        <th data-field="ModulePage" data-width="150">模块</th>
+                        <th data-field="Description" data-formatter="operateTextFormatter">描述</th>
+                        <th data-field="CreateUser" data-formatter="operateUserFormatter" data-width="100">操作用户</th>
+                        <th data-field="CreateDate" data-width="150" data-formatter="operateDateFormatter">创建时间</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- /.panel-body -->
+</div>
+<script>
+    AddTable({
+        placeholder: "根据用户、模块，描述搜索日志",
+        isAdd: false
+    });
+</script>

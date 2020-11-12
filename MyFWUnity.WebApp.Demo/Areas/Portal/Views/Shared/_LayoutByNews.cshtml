@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Layout/css")
+    @Scripts.Render("~/Layout/js")
+    <link href="~/Content/Fonts/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Portal/Content/CSS/layout-news.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="header-1">
+        <div class="header">
+            <div class="header-top">
+                <p>上海市浦东新区建筑信息模型应用技术协会</p>
+                <span><a href="/Portal/Account/Login">会员登录</a><em>|</em><a href="#">关于&nbsp;About</a></span>
+            </div>
+
+        </div>
+        <div class="header-logo">
+            <div class="logo ">
+                <div class="clearfix">
+                    <a href="/Portal/Home/Index"><img src="~/Areas/Portal/Content/Images/logo.png" /></a>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="nav">
+            <ul>
+                <li class="n-zczn" ><a href="/Portal/Home/NewsList?nc=政策指南">政策指南</a></li>
+                <li class="n-bimdt"><a href="/Portal/Home/NewsList?nc=BIM动态">BIM动态</a></li>
+                <li class="n-xmzs"><a href="/Portal/Home/NewsList?nc=项目展示">项目展示</a></li>
+                <li class="n-xsjl"><a href="/Portal/Home/NewsList?nc=学术交流">学术交流</a></li>
+                <li class="n-xhhd"><a href="/Portal/Home/NewsList?nc=协会活动">协会活动</a></li>
+                <li class="n-hyzj"><a href="/Portal/Home/NewsList?nc=会员之家">会员之家</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="render-body">
+        @RenderBody()
+    </div>
+   
+</body>
+</html>

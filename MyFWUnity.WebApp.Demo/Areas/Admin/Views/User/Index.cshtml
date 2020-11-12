@@ -1,0 +1,368 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+}
+@using MyFWUnity.Module.Base.DataContracts;
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/User/QueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        <th data-field="ID" data-width="350">ID</th>
+                        <th data-field="UserCode">登录名</th>
+                        <th data-field="UserName">用户名</th>
+                        <th data-field="IsAdmin" data-formatter="operateYesOrNoFormatter">是否超级管理员</th>
+                        <th data-field="CreateDate" data-formatter="operateDateFormatter">创建时间</th>
+                        <th data-field="" data-width="150" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<style>
+    .up-body {
+        padding: 12px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .up-title {
+        border-left: 3px solid #2A3F54;
+        padding-left: 10px;
+        font-size: 18px;
+    }
+
+    .up-project-select {
+        padding: 12px;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+    }
+
+    .b-select {
+        width: 100% !important;
+    }
+
+    .up-project {
+        height: 60%;
+    }
+
+    .up-project-body {
+        height: calc(100% - 30px);
+    }
+
+    .up-project-permission {
+        height: calc(100% - 80px);
+        overflow: auto;
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .up-item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .up-item-left {
+        float: left;
+        line-height: 42px;
+    }
+
+    .up-item-right {
+        float: right;
+    }
+
+    .up-item-class {
+        border: 1px solid #ddd;
+        padding: 12px;
+        padding-bottom: 0px;
+        margin-bottom: 10px;
+    }
+
+    .up-item-class .up-item:last-child {
+        border-bottom: none;
+    }
+
+    .up-item-class-title {
+        cursor: pointer;
+        padding-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .up-item-class-title span {
+        float: right;
+    }
+
+    .up-item-class-body {
+        border-top: 1px solid #ddd;
+        display: none;
+    }
+
+    .up-system {
+        padding-top: 27px;
+        height: 40%;
+    }
+
+    .up-system-body {
+        height: calc(100% - 35px);
+        overflow: auto;
+        padding: 12px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+    }
+</style>
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <div class="up-body">
+                <div class="up-project">
+                    <div class="up-project-title up-title">
+                        项目权限
+                    </div>
+                    <div class="up-project-body">
+                        <div class="up-project-select">
+                            <select class="selectpicker b-select" id="ProjectAll" data-live-search="true" data-size="10">
+                                <option>test</option>
+                            </select>
+                        </div>
+                        <div class="up-project-permission">
+                            @if (ViewBag.PermissionClassData != null)
+                            {
+                                foreach (PermissionClass item in ViewBag.PermissionClassData)
+                                {
+                                    if (item.IsProjectShow)
+                                    {
+                                        <div class="up-item-class">
+                                            <div class="up-item-class-title">
+                                                @item.Name
+                                                <span class="fa fa-chevron-up"></span>
+                                            </div>
+                                            <div class="up-item-class-body">
+                                                @foreach (PermissionDataInfo _item in item.PermissionDataInfos)
+                                                {
+                                                    if (_item.Type.Equals("Project"))
+                                                    {
+                                                        <div class="up-item clearfix">
+                                                            <div class="up-item-left">
+                                                                @_item.Name
+                                                            </div>
+                                                            <div class="up-item-right">
+                                                                <input type="checkbox" id="@_item.Code" value="@_item.Code" disabled="disabled" data-type=" @_item.Type" class="checked_Effect" /><label for="@_item.Code"></label>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="up-system">
+                    <div class="up-system-title up-title">
+                        系统权限
+                    </div>
+                    <div class="up-system-body">
+                        @if (ViewBag.PermissionClassData != null)
+                        {
+                            foreach (PermissionClass item in ViewBag.PermissionClassData)
+                            {
+                                if (item.IsSystemShow)
+                                {
+                                    <div class="up-item-class">
+                                        <div class="up-item-class-title">
+                                            @item.Name
+                                            <span class="fa fa-chevron-up"></span>
+                                        </div>
+                                        <div class="up-item-class-body">
+                                            @foreach (PermissionDataInfo _item in item.PermissionDataInfos)
+                                            {
+                                                if (_item.Type.Equals("System"))
+                                                {
+                                                    <div class="up-item clearfix">
+                                                        <div class="up-item-left">
+                                                            @_item.Name
+                                                        </div>
+                                                        <div class="up-item-right">
+                                                            <input type="checkbox" id="@_item.Code" value="@_item.Code" disabled="disabled" data-type="@_item.Type" class="checked_Effect" /><label for="@_item.Code"></label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="modal fade in" id="Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">用户信息</h4>
+                </div>
+                <form id="Form" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" name="ID" value="" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">登录名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="UserCode" placeholder="请输入登录名（必填）" id="UserCode" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">真实姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="UserName" placeholder="请输入真实姓名（选填）" id="UserName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">邮箱</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Email" placeholder="请输入邮箱（选填）" id="Email" email>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">是否超级管理员</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" id="IsAdministrator" name="IsAdministrator" data-on="1" data-off="0" class="checked_Effect" /><label for="IsAdministrator"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default save-info">保存</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    AddTable({
+        placeholder: "搜索登录名或用户名",
+        addCallback: function () {
+            $("#id").val("");
+            $("#UserCode").val('');
+            $("#UserName").val('');
+            $("#Email").val('');
+            $('#Modal').modal('show');
+        }
+    });
+    WOEvents.Update = function (row) {
+        $("#id").val(row.ID);
+        $("#UserCode").val(row.UserCode);
+        $("#UserName").val(row.UserName);
+        $("#Email").val(row.Email);
+        $('#Modal').modal('show');
+    }
+    WOEvents.Delete = function (row) {
+        MyFWUnity.CustomCommon.Delete("User", row.ID, function () {
+            $("#table").bootstrapTable('refresh');
+        })
+    }
+
+    $(function () {
+        $(".save-info").click(function () {
+            MyFWUnity.CustomCommon.AddOrUpdate("Form", "User", null, function () {
+                $('#Modal').modal('hide');
+                $("#table").bootstrapTable('refresh');
+            })
+        });
+        $(".up-item-class-title").click(function () {
+            if ($(this).next(".up-item-class-body").is(':hidden')) {
+                $(this).next(".up-item-class-body").slideDown();
+                $(this).find("span").removeClass("fa-chevron-up");
+                $(this).find("span").addClass("fa-chevron-down");
+            }
+            else {
+                $(this).next(".up-item-class-body").slideUp();
+                $(this).find("span").removeClass("fa-chevron-down");
+                $(this).find("span").addClass("fa-chevron-up");
+            }
+        });
+        $('#table').on("click-row.bs.table", function (e, row, event) {
+            $("#table  tbody tr").removeClass("def");
+            User.Default.UserID = row.ID;
+            $(event).addClass("def");
+            User.InitPermission(User.Default.UserID, $("#ProjectAll").val());
+            User.EisabledPermission();
+        });
+        $(".up-body input[type='checkbox']").click(function () {
+            var $self = $(this);
+            if ($self.is(":checked")) {
+                var type = $(this).data("type");
+                if (User.Default.UserID == undefined) {
+                    sweetAlert("警告", "请选择用户", "warning");
+                }
+                var projectID = $("#ProjectAll").val();
+                var permissionCode = $(this).val();
+                if (type == "System") {
+                    projectID = "";
+                }               
+                AjaxCustom.getAjax("/api/Permission/AddRelationByPermission?permissionID=" + permissionCode + "&userID=" + User.Default.UserID + "&projectID=" + projectID, null, function () {
+                    $self.prop("checked", !$self.is(":checked"));
+                });
+            }
+            else {
+                var entryRelationID = $(this).data("eid");
+                AjaxCustom.getAjax("/api/EntryRelation/Remove/" + entryRelationID, null, function () {
+                    $self.prop("checked", !$self.is(":checked"));
+                });
+            }
+        })
+        User.InitProjectAll();
+    });
+    var User = (function () {
+        var EisabledPermission = function () {
+            $(".up-body input[type='checkbox']").removeAttr("disabled");
+        }
+        var InitPermission = function (userID, projectID) {
+            $(".up-body input[type='checkbox']").prop("checked", false);
+            AjaxCustom.getAjax("/api/Permission/QueryAllPermission?userID=" + userID + "&projectID=" + projectID, function (data) {
+
+                $.each(data, function (key, item) {
+                    if (item.IsChecked) {
+                        if (item.EntryRelationID != undefined) {
+                            $("#" + item.Code).data("eid", item.EntryRelationID);
+                        }
+                        $("#" + item.Code).prop("checked", true);
+                    }
+                });
+            });
+
+        }
+        var InitProjectAll = function () {
+            MyFWUnity.CustomCommon.InitProjectAll($("#ProjectAll"), function () {
+                var projectid = $(this).val();
+                InitPermission(User.Default.UserID, projectid);
+            })
+        }
+        return {
+            EisabledPermission: EisabledPermission,
+            InitPermission: InitPermission,
+            InitProjectAll: InitProjectAll
+        }
+    })();
+    User.Default = {};
+
+</script>

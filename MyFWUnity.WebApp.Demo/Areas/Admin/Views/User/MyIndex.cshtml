@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "个人信息";
+}
+<script src="~/Content/Appjs/Base/MyIndex.js"></script>
+<div class="">
+    @*<div class="page-title">
+            <div class="title_left">
+                <h3>个人信息</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>个人信息</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>*@
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                <!-- Current avatar -->
+                                <img class="img-responsive avatar-view " id="headerImage" src="@(string.IsNullOrEmpty(ViewBag.UserInfo.UserFace)?"/Content/images/h.png":ViewBag.UserInfo.UserFace)" alt="Avatar" title="Change the avatar">
+                            </div>
+                        </div>
+                        <h3>@ViewBag.UserInfo.UserCode</h3>
+                        <ul class="list-unstyled user_data">
+                            <li class="display-name">
+                                <i class="fa fa-info-circle user-profile-icon"></i> @ViewBag.UserInfo.Name
+                            </li>
+                            @*<li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                    <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                                </li>*@
+                        </ul>
+                        <a class="btn btn-success updateheaderimageBtn">
+                            <i class="fa fa-user m-right-xs"></i>更换头像
+                            <input type="file" id="headerImageFile" style="display:none;" />
+                        </a>
+                        <a class="btn btn-success updateInfoBtn"><i class="fa fa-edit m-right-xs"></i>修改信息</a>
+                        <a class="btn btn-success updatePasswordBtn"><i class="fa fa-key m-right-xs"></i>修改密码</a>
+                        <br />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="SystemUserForUpdateModal" tabindex="-1" data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">用户信息</h4>
+                </div>
+                <form id="SystemUsersForUpdateForm" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="@ViewBag.UserInfo.UserCode" class="form-control" disabled="disabled" name="UserCode"  id="UserCode" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">用户姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="@ViewBag.UserInfo.UserName" class="form-control" name="UserName" placeholder="请输入用户姓名（必填）" id="UserName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">邮件</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="@ViewBag.UserInfo.Email" class="form-control" name="Email" placeholder="请输入用户姓名（选填）" id="Email" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default updateInfo">修改</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade in" id="SystemUserForUpdatePasswordModal" tabindex="-1" role="dialog"  data-backdrop="static"  aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">修改密码</h4>
+                </div>
+                <form id="SystemUsersForUpdatePasswordForm" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">旧密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请输入旧密码（必填）" name="OldPassword" id="OldPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请输入新密码（必填）" name="NewPassword" id="NewPassword" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">确认密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" equalTo="#NewPassword" name="ConfirmPassword" placeholder="请再次输入密码（必填）" id="ConfirmPassword" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default updatePassword">修改</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="UserID" type="hidden" value="@ViewBag.UserInfo.ID" />
+

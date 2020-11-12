@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyFWUnity.WebApp.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MyFWUnity.WebApp.WebAPI.APIController.Base.UserController.ReturnResult(System.Func{System.Net.Http.HttpResponseMessage})">
+            <summary>
+            去除底层验证
+            </summary>
+            <param name="fuc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyFWUnity.WebApp.WebAPI.APIController.File.FileController.TempUploadBigFile">
+            <summary>
+            上传文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyFWUnity.WebApp.WebAPI.APIController.File.FileController.GetBatchUploadedTempFiles(System.String)">
+            <summary>
+            Upload file into temp folder and use later
+            Used when create file and entity relationship
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

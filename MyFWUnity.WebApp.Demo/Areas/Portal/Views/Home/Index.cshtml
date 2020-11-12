@@ -1,0 +1,230 @@
+﻿
+<link href="~/Areas/Portal/Content/CSS/index.css" rel="stylesheet" />
+<script src="~/Areas/Portal/Content/JS/script.js"></script>
+<script src="~/Areas/Portal/Content/JS/carousel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        GetIndexSlider();
+        sliderList();
+        navList();
+    })
+    function sliderList() {
+        AjaxCustom.getAjax("/api/News/QueryShowSlide?count=5", function (res) {
+            if (res) {
+                var cHtml = '';
+                var bHtml = '';
+                $.each(res, function (key, item) {
+                    var def = "";
+                    if (key == 0) {
+                        def = "def";
+                    }
+                    cHtml += '<div class="silde-item ' + def + '"><h5>' + item.Title + '</h5> <p>' + item.Description + '</p> <a href="/Portal/Home/NewsDetail?id=' + item.ID + '" target="_blank">查看详情</a> </div>';
+                    bHtml += '<a href="javascript:;" class="slider-click" data-index="' + key + '"></a>';
+                })
+                $(".silde-content").html(cHtml);
+                bHtml += '<span class="next"></span>';
+                $(".silde-btn").html(bHtml);
+                $(".silde-btn span.next").click(function () {
+                    silder();
+                });
+                $(".silde-btn a.slider-click").click(function () {
+                    var index = $(this).data("index");
+                    sliderindex = index;
+                    silder();
+                });
+            }
+        })
+    }
+    function navList() {
+        AjaxCustom.getAjax("/api/News/QueryShowNav", function (res) {
+            if (res) {
+                $.each(res, function (key, item) {
+                    switch (item.NewsClass) {
+                        case "会员之家":
+                            $(".hyzj").data("id", item.ID);
+                            $(".hyzj").data("coverpath", item.CoverPath);
+
+                            break;
+                        case "协会活动":
+                            $(".xhhd").data("id", item.ID);
+                            $(".xhhd").data("coverpath", item.CoverPath);
+                            break;
+                        case "学术交流":
+                            $(".xsjl").data("id", item.ID);
+                            $(".xsjl").data("coverpath", item.CoverPath);
+                            break;
+                        case "项目展示":
+                            $(".xmzs").data("id", item.ID);
+                            $(".xmzs").data("coverpath", item.CoverPath);
+                            break;
+                        case "BiM动态":
+                            $(".bimdt").data("id", item.ID);
+                            $(".bimdt").data("coverpath", item.CoverPath);
+                            break;
+                        case "政策指南":
+                            $(".zczn").data("id", item.ID);
+                            $(".zczn").data("coverpath", item.CoverPath);
+                            $(".mbc-img").attr("src", item.CoverPath);
+                            $(".mbc-href").attr("href", "/Portal/Home/NewsDetail?id=" + item.ID);
+                            break;
+                    }
+                })
+            }
+        })
+    }
+
+    function GetIndexSlider() {
+        AjaxCustom.getAjax("/api/Slider/GetIndexSliderByCount?count=6", function (res) {
+            if (res) {
+                var strHtml = '';
+                $.each(res, function (key, item) {
+                    strHtml += '  <li class="cards_list">  <div class="img"> <img src="' + item.SliderImagePath + '" alt=""> </div> </li>';
+                });
+                $(".sc-image ul.container").html(strHtml);
+                var carousel3 = new Carousel($(".sc-image").children("ul.container"), {
+                    transition: ".4s",
+                    switchBtn: $(".sc-image").children("i.btn-direct"),
+                    offsetDistance: 350,
+                    isAuto: true,
+                    interval: 3000,
+                });
+            }
+        })
+    }
+
+</script>
+<div class="silde">
+    <div class="silde-main">
+        <div class="silde-body">
+            <div class="silde-container">
+                <div class="sc-image">
+
+                    <ul class="container"></ul>
+
+                </div>
+                <div class="sc-body">
+                    <div class="silde-content">
+
+                    </div>
+                    <div class="silde-btn">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="fix_tz">
+            <div>
+                <h5>重要通知<a href="#">更多>></a></h5>
+                <ul>
+                    <li>上海市浦东新区建筑信息模型应用技术协会成立大会<span>[new]</span><em>2020.1.15</em></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="main">
+    <div class="m-body clearfix">
+        <div class="mb-left">
+            <ul>
+                <li class="zczn" data-type="zczn"><a href="#" class="def">政策指南<em></em></a></li>
+                <li class="bimdt" data-type="bimdt"><a href="#">BIM动态</a></li>
+                <li class="xmzs" data-type="xmzs"><a href="#">项目展示</a></li>
+                <li class="xsjl" data-type="xsjl"><a href="#">学术交流</a></li>
+                <li class="xhhd" data-type="xhhd"><a href="#">协会活动</a></li>
+                <li class="hyzj" data-type="hyzj"><a href="#">会员之家</a></li>
+            </ul>
+        </div>
+        <div class="mb-content clearfix">
+            <div class="mbc-left">
+                <a href="#" class="mbc-href" target="_blank"><img src="" class="mbc-img" /></a>
+
+            </div>
+            <div class="mbc-right">
+                <div class="mbcr-tab">
+                    <a href="#" class="def">理事风采</a>
+                    <a href="#">示范应用</a>
+                </div>
+                <div class="mbcr-body">
+                    <ul class="lsdw"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="mb-right">
+            <div class="mbr-top">
+                <h5>会员单位<em></em></h5>
+                <ul class="hydw"></ul>
+            </div>
+            <div class="mbr-bottom">
+                <a href="#" class="weizhi">位置信息</a>
+                <a href="#" class="weixin">
+                    协会公众号
+                    <img src="~/Areas/Portal/Content/Images/ecode.jpg" style="display:none;" />
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        GetUnitLinkByModule(function (res) {
+            var strHtml = '';
+            $.each(res, function (key, item) {
+                strHtml += '   <li><a target="_blank" href="' + item.Link + '">' + item.Name + '</a><span>' + new Date(item.CreateDate).Format("yyyy.MM.dd") + '</span></li>';
+            });
+            $(".lsdw").html(strHtml);
+        }, "理事单位", 8);
+
+        GetUnitLinkByModule(function (res) {
+            var strHtml = '';
+            $.each(res, function (key, item) {
+                strHtml += '<li><a target="_blank" href="' + item.Link + '">' + item.Name + '</a></li>';
+            });
+            strHtml += '<li><a  href="#">更多>></a></li>';
+            $(".hydw").html(strHtml);
+        }, "会员单位", 7);
+
+
+        silder();
+        $(".weixin").click(function () {
+            $(this).find("img").fadeToggle();
+        })
+        $(".mb-left ul li").click(function () {
+            var type = $(this).data("type");
+            $(".mb-left ul li a").removeClass("def");
+            $(".mb-left ul li a em").remove();
+            $(this).find("a").addClass("def");
+            $(this).find("a").append('<em></em>');
+            $(".mbc-img").attr("src", "");
+            // $(".mbc-img").fadeOut();
+            $(".mbc-img").attr("src", $(this).data("coverpath"));
+            $(".mbc-href").attr("href", "/Portal/Home/NewsDetail?id=" + $(this).data("id"));
+            // $(".mbc-img").fadeIn();
+        })
+
+    })
+
+    var sliderindex = 0;
+    var sliderTimeout;
+    function silder() {
+        if (sliderTimeout) {
+            clearTimeout(sliderTimeout);
+        }
+        sliderindex++;
+        $(".silde-btn a").removeClass("def");
+        $(".silde-item").removeClass("def");
+        $(".silde-btn a:nth-child(" + sliderindex + ")").addClass("def");
+        $(".silde-item:nth-child(" + sliderindex + ")").addClass("def");
+        sliderTimeout = setTimeout("silder()", 3000);
+        if (sliderindex > 4) {
+            sliderindex = 0;
+        }
+    }
+</script>
+

@@ -1,0 +1,120 @@
+﻿<div id="qm_con_body">
+    <div id="mailContentContainer" class="qmbox qm_con_body_content qqmail_webmail_only" style="">
+        <style>
+            /* Changing the layout to use less space for mobiles */
+            @media screen and (max-device-width: 480px), screen and (-webkit-min-device-pixel-ratio: 2) {
+                .qmbox #email-body {
+                    min-width: 30em !important;
+                }
+
+                .qmbox #email-page {
+                    padding: 8px !important;
+                }
+
+                .qmbox #email-banner {
+                    padding: 8px 8px 0 8px !important;
+                }
+
+                .qmbox #email-avatar {
+                    margin: 1px 8px 8px 0 !important;
+                    padding: 0 !important;
+                }
+
+                .qmbox #email-fields {
+                    padding: 0 8px 8px 8px !important;
+                }
+
+                .qmbox #email-gutter {
+                    width: 0 !important;
+                }
+            }
+        </style>
+        <div id="email-body">
+            <table id="email-wrap" align="center" border="0" cellpadding="0" cellspacing="0" style="background-color:#f0f0f0;color:#000000;width:100%;">
+                <tbody>
+                    <tr valign="top">
+                        <td id="email-page" style="padding:16px !important;">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border:1px solid #bbbbbb;color:#000000;width:100%;">
+                                <tbody>
+                                    <tr valign="top">
+                                        <td bgcolor="#ffffff" style="background-color:#ffffff;color:#292929;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:12px;line-height:1;">
+                                        <!--<img src="http://115.29.163.234:8001/s/zh_CN7zs23c-1988229788/6100/7/_/jira-logo-scaled.png" style="vertical-align:top;">-->
+                                        </td>
+                                    </tr>
+                                    <tr valign="top">
+                                        <td id="email-banner" style="padding:32px 32px 0 32px;">
+
+                                            <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="width:100%;">
+                                                <tbody>
+                                                    <tr valign="top">
+                                                        <td style="color:#505050;font-family:Arial,FreeSans,Helvetica,sans-serif;padding:0;">
+                                                            <img id="email-avatar" src="${UserFace}" height="48" width="48" border="0" align="left" style="padding:0;margin: 0 16px 16px 0;">
+                                                            <div id="email-action" style="padding: 0 0 8px 0;font-size:12px;line-height:18px;">
+                                                                <a class="user-hover" rel="noopener" id="email_gaokun" href="${UserHref}" style="color:#3b73af;" target="_blank">${UserName}</a>
+                                                                ${Operation} <img src="http://115.29.163.234:8001/images/icons/issuetypes/bug.png" height="16" width="16" border="0" align="absmiddle"> <a style="color:#3b73af;text-decoration:none;" href="${NumberHerf}" rel="noopener" target="_blank">${Number}</a> as <strong>${CloseStatus}</strong>
+                                                            </div>
+                                                            <div id="email-summary" style="font-size:16px;line-height:20px;padding:2px 0 16px 0;">
+                                                                <a style="color:#3b73af;text-decoration:none;" href="${TitleHerf}" rel="noopener" target="_blank"><strong>${Title}</strong></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr valign="top">
+                                        <td id="email-fields" style="padding:0 32px 32px 32px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" style="padding:0;text-align:left;width:100%;" width="100%">
+                                                <tbody>
+                                                    <tr valign="top">
+                                                        <td id="email-gutter" style="width:64px;white-space:nowrap;"></td>
+                                                        <td>
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tbody>
+                                                                    <tr valign="top">
+                                                                        <td style="color:#000000;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:12px;padding:0 10px 10px 0;white-space:nowrap;">
+                                                                            <strong style="font-weight:normal;color:#505050;">更改者:</strong>
+                                                                        </td>
+                                                                        <td style="color:#000000;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:12px;padding:0 0 10px 0;width:100%;">
+                                                                            <a class="user-hover" rel="noopener" id="email_gaokun" href="${UserHref}" style="color:#3b73af;" target="_blank">${UserName}</a>
+                                                                            (${Date})
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr valign="top">
+                                                                        <td style="color:#000000;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:12px;padding:0 10px 10px 0;white-space:nowrap;">
+                                                                            <strong style="font-weight:normal;color:#505050;">状态:</strong>
+                                                                        </td>
+                                                                        <td style="color:#000000;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:12px;padding:0 0 10px 0;width:100%;">
+                                                                            <span class="diffremovedchars" style="background-color:#ffe7e7;text-decoration:line-through;">${CloseStatus}</span>
+                                                                            <span class="diffaddedchars" style="background-color:#ddfade;">${CurrentStatus}</span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <td style="color:#505050;font-family:Arial,FreeSans,Helvetica,sans-serif;font-size:10px;line-height:14px;padding: 0 16px 16px 16px;text-align:center;">
+                            这个信息由${PlatformName}自动发送。<br>
+                          </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <style type="text/css">
+            .qmbox style, .qmbox script, .qmbox head, .qmbox link, .qmbox meta {
+                display: none !important;
+            }
+        </style>
+    </div>
+</div>

@@ -1,0 +1,269 @@
+﻿<script src="~/Content/Plugins/UploadImage/uploadimage.js"></script>
+<link href="~/Content/Plugins/KindEditor/themes/default/default.css" rel="stylesheet" />
+<script src="~/Content/Plugins/KindEditor/kindeditor-all.js"></script>
+<script src="~/Content/Plugins/KindEditor/lang/zh-CN.js"></script>
+@Styles.Render("~/Content/UploadFile/css")
+@Scripts.Render("~/Content/UploadFile/js")
+<style>
+    .ModalInfo {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        opacity: 0;
+        overflow:auto;
+    }
+</style>
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/News/QueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        <th data-field="CoverPath" data-formatter="operateImageFormatter">封面</th>
+                        <th data-field="Title">标题</th>
+                        <th data-field="NewsClass">分类</th>
+                        <th data-field="Author">作者</th>
+                        <th data-field="ReadCount">阅读数</th>
+                        <th data-field="IsShowNav" data-formatter="operateYesOrNoFormatter">首页导航</th>
+                        <th data-field="IsShowSlide" data-formatter="operateYesOrNoFormatter">首页幻灯片</th>
+                        <th data-field="CreateDate" data-formatter="operateDateFormatter">创建时间</th>
+                        <th data-field="" data-width="150" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="ModalInfo">
+                <form id="Form" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" name="ID" value="" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Title" placeholder="请输入标题（必填）" id="Title" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">摘要</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Description" placeholder="请输入摘要（选填）" id="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">分类</label>
+                            <div class="col-sm-10">
+                                <select class="form-control selectpicker" id="NewsClass" name="NewsClass">
+                                    <option value="政策指南"> 政策指南</option>
+                                    <option value="BiM动态"> BIM动态</option>
+                                    <option value="项目展示"> 项目展示</option>
+                                    <option value="学术交流"> 学术交流</option>
+                                    <option value="协会活动"> 协会活动</option>
+                                    <option value="会员之家"> 会员之家</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">作者</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Author" placeholder="请输入作者（选填）" id="Author" email>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">图源</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ImageSorce" placeholder="请输入图源（选填）" id="ImageSorce" email>
+                            </div>
+                        </div>
+                        <div class="form-group head-image">
+
+                        </div>
+                        <div class="form-group upload-file">
+
+                        </div>
+                        <input type="hidden" id="CoverPath" name="CoverPath" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">首页导航</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" id="IsShowNav" name="IsShowNav" data-on="true" data-off="false" class="checked_Effect" /><label for="IsShowNav"></label>
+                                <p style="font-size:12px;">按最新发布时间进行排序，勾选此按钮则在首页显示，显示位置如图，点击图片查看<a href="/Areas/Admin/Content/Images/t1.jpg" target="_blank"><img src="~/Areas/Admin/Content/Images/t1.jpg" width="50" /></a>，不勾选则在新闻列表寻找此新闻，显示位置如图，点击图片查看<a target="_blank" href="/Areas/Admin/Content/Images/t2.jpg"><img src="~/Areas/Admin/Content/Images/t2.jpg" width="50" /></a></p>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">首页幻灯片</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" id="IsShowSlide" name="IsShowSlide" data-on="true" data-off="false" class="checked_Effect" /><label for="IsShowSlide"></label>
+                                <p style="font-size:12px;">按最新发布时间进行排序，勾选此按钮则在首页显示，显示位置如图，点击图片查看<a href="/Areas/Admin/Content/Images/t3.jpg" target="_blank"><img src="~/Areas/Admin/Content/Images/t3.jpg" width="50" /></a>，不勾选则在新闻列表寻找此新闻，显示位置如图，点击图片查看<a target="_blank" href="/Areas/Admin/Content/Images/t2.jpg"><img src="~/Areas/Admin/Content/Images/t2.jpg" width="50" /></a></p>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Body" style="height:250px;" id="Body"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default save-info">发布</button>
+                        <button type="button" class="btn btn-white modalinfoclose" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+
+<script>
+    var editor = null;
+    customquery = function (params) {
+        var temp = {
+            condition: ((searchval == undefined) ? "" : searchval),//自定义查询   Condition: params.searchText == undefined ? "" : params.searchText, 自带查询
+            newsClass: "",
+            pageSize: params.pageSize,
+            pageIndex: params.pageNumber,
+        };
+        return temp;
+    };
+    KindEditor.ready(function (K) {
+        editor = K.create('#Body', {
+            items: ['source', '|', 'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'],
+            uploadJson: '/api/File/UploadImageByKindEditor',
+            allowImageRemote: false,
+        });
+    });
+    AddTable({
+        placeholder: "搜索新闻标题",
+        addCallback: function () {
+            $("#id").val("");
+            $("#Title").val('');
+            $("#Description").val('');
+            $("#NewsClass").selectpicker('val', "政策指南");
+            $("#Author").val('');
+            $("#ImageSorce").val('');
+            $("#Body").val('');
+            $("#IsShowNav").prop('checked', false);
+            $("#IsShowSlide").prop('checked', false);
+            $(".head-image").uploadimage("refresh");
+            $("#CoverPath").val('');
+            $(".upload-file").uploadfile("refresh");
+            editor.text("");
+            $('.ModalInfo').css({
+                "opacity": "1",
+                "z-index": "100"
+            });
+
+        }
+    });
+    WOEvents.Update = function (row) {
+        var body = (row.Body == undefined ? "" : row.Body);
+        $("#id").val(row.ID);
+        $("#Title").val(row.Title);
+        $("#Description").val(row.Description);
+        $("#NewsClass").selectpicker('val', row.NewsClass);
+        $("#Author").val(row.Author);
+        $("#ImageSorce").val(row.ImageSorce);
+        $("#Body").val(body);
+        $("#IsShowNav").prop('checked', row.IsShowNav);
+        $("#IsShowSlide").prop('checked', row.IsShowSlide);
+        $("#CoverPath").val(row.CoverPath);
+        $(".head-image").uploadimage("setImage", row.CoverPath);
+        var fileData = [];
+        $.each(row.Attachments, function (key, item) {
+            var obj = new Object();
+            obj.Base64Stream = item.FilePath;
+            obj.ID = item.ID;
+            obj.SizeDisplay = item.SizeDisplay;
+            obj.Size = "";
+            obj.Name = item.Name;
+            fileData.push(obj);
+        })
+        $(".upload-file").uploadfile("refresh");
+        $(".upload-file").uploadfile("load", fileData);
+        editor.html(body);
+        $('.ModalInfo').css({
+            "opacity": "1",
+            "z-index": "100"
+        });
+    }
+    WOEvents.Delete = function (row) {
+        MyFWUnity.CustomCommon.Delete("News", row.ID, function () {
+            $("#table").bootstrapTable('refresh');
+        })
+    }
+    $(function () {
+        $(".save-info").click(function () {
+            editor.sync();
+            var files = $(".upload-file").uploadfile("getfiledata");
+            if (files.length > 0) {
+                $(".upload-file").uploadfile("upload", function (resdata) {
+                    var attachments = [];
+                    var data = new Object();
+                    if (resdata) {
+                        $.each(resdata, function (key, item) {
+                            var d = new Object();
+                            d.Name = item;
+                            d.FilePath = key;
+                            attachments.push(d);
+                        })
+                        data["AttachmentsStr"] = JSON.stringify(attachments);
+                    }
+                    MyFWUnity.CustomCommon.AddOrUpdate("Form", "News", data, function () {
+                        $('.ModalInfo').css({
+                            "opacity": "0",
+                            "z-index": "-1"
+                        });
+                        $("#table").bootstrapTable('refresh');
+                    })
+                })
+            }
+            else {
+                MyFWUnity.CustomCommon.AddOrUpdate("Form", "News", null, function () {
+                    $('.ModalInfo').css({
+                        "opacity": "0",
+                        "z-index": "-1"
+                    });
+                    $("#table").bootstrapTable('refresh');
+                })
+            }
+        });
+        $(".head-image").uploadimage({
+            text: "封面",
+            col: 2,
+            success: function (data) {
+                $("#CoverPath").val(data.url);
+            }
+        });
+        $(".upload-file").uploadfile({
+            "title": "上传附件",
+            deletefile: function (data, obj, uploadfileobj) {
+                AjaxCustom.getAjax("/api/Sys/DeleteAttachmentsById?id=" + data.ID, function (res) {
+                    uploadfileobj.removefile(obj);
+                });
+            }
+        });
+        $(".modalinfoclose").click(function () {
+            $('.ModalInfo').css({
+                "opacity": "0",
+                "z-index": "-1"
+            });
+        })
+    })
+</script>

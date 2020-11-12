@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_LayoutByNews.cshtml";
+}
+<link href="~/Content/Fonts/css/font-awesome.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="~/Content/Plugins/custom-pagination/custom-pagination.css" rel="stylesheet" />
+<script src="~/Content/Plugins/custom-pagination/custom-pagination.js"></script>
+<style>
+
+
+    .c-body {
+        width: 100%;
+    }
+
+    .c-main {
+        width: 1024px;
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+    .c-left {
+        float: left;
+        width: 750px;
+        border-right: 2px solid #ccc;
+        min-height: 600px;
+        padding-right: 10px;
+    }
+
+    .c-content {
+        width: 100%;
+    }
+
+    .c-item {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .c-item:first-child {
+        margin-top: 0px;
+    }
+
+    .c-item h1 {
+        font-size: 20px;
+        color: #1957A7;
+        margin: 5px 0;
+        font-weight: 500;
+    }
+
+    .c-item p {
+        font-size: 14px;
+        color: #ccc;
+        margin: 0px;
+        letter-spacing: 1px;
+        line-height: 22px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .c-right {
+        float: left;
+        width: 274px;
+        padding-left: 30px;
+    }
+
+    .c-right h1 {
+        font-size: 16px;
+        margin: 0px;
+        font-weight: 500;
+        color: #000;
+    }
+
+    .c-right ul {
+        margin: 0px;
+        margin-top: 15px;
+    }
+
+    .c-right ul li {
+        list-style: none;
+        line-height: 28px;
+        text-decoration: underline;
+    }
+
+    .ci-date {
+        color: #808080;
+    }
+
+    .ci-date span {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .ci-date span em {
+        font-style: normal;
+    }
+
+    .c-list {
+        height: 560px;
+    }
+</style>
+<div class="c-body">
+    <div class="c-main clearfix">
+        <div class="c-left">
+            <div class="c-content">
+                <div class="c-list">
+
+
+
+                </div>
+                <div class="page" id="page"></div>
+            </div>
+        </div>
+        <div class="c-right">
+            <h1>为您推荐</h1>
+            <ul>
+                <li><a href="#" target="_blank">第一届bim大赛正式启动</a></li>
+                <li><a href="#" target="_blank">最新bim发展报告</a></li>
+                <li><a href="#" target="_blank">bim项目应用案例</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var box = null;
+    var newsClass = "";
+    $(function () {
+        init();
+        LoadNewsPage(1);
+        box = new CustomPagination('#page', {
+            inupt_forward: 'no',//是否开启[输入跳转]
+            total: 0,//总页数
+            count: 6,//显示的页码个数，多余页码会用...代替
+            changePage: function (pageNum) {//切换页码成功回调
+                LoadNewsPage(pageNum);
+            }
+        });
+    })
+    function init() {
+        newsClass = MyFWUnity.CustomCommon.GetQueryString("nc", true);
+        switch (newsClass) {
+            case "会员之家":
+                $(".n-hyzj").addClass("def");
+                break;
+            case "协会活动":
+                $(".n-xhhd").addClass("def");
+                break;
+            case "学术交流":
+                $(".n-xsjl").addClass("def");
+                break;
+            case "项目展示":
+                $(".n-xmzs").addClass("def");
+                break;
+            case "BIM动态":
+                $(".n-bimdt").addClass("def");
+                break;
+            case "政策指南":
+                $(".n-zczn").addClass("def");
+                break;
+        }
+
+    }
+
+    function LoadNewsPage(pageindex) {
+        var txt = $("#search-ipt").val();
+        if (txt != "") {
+            AjaxCustom.getAjax("/api/News/QueryPage?condition=&pageIndex=" + pageindex + "&pageSize=5&newsClass=" + newsClass + "&order=date", function (res) {
+                if (res) {
+                    LoadNews(res.rows, res.total, pageindex);
+                }
+            })
+        }
+    }
+    function LoadNews(newsList, total, pageindex) {
+        var html = '';
+        $.each(newsList, function (key, item) {
+            html += '<div class="c-item">';
+            html += '<h1>' + item.Title + '</h1>';
+            html += ' <div>';
+            html += '  <p>';
+            html += item.Description;
+            html += '  </p>';
+            html += '  <div class="ci-date">';
+            html += '    <span><em class="fa fa-calendar"></em>' + new Date(item.CreateDate).Format("yyyy-MM-dd") + '</span>';
+            html += '     <span><em class="fa fa-eye"></em><em class="read-count"> (' + item.ReadCount + ')</em></span>';
+            html += '     <a href="/Portal/Home/NewsDetail?id=' + item.ID + '" target="_blank"><em class="fa fa-external-link"></em> 查看详情</a>';
+            html += '    </div>';
+            html += '  </div>';
+            html += ' </div>';
+        });
+        $(".c-list").html(html);
+        if (total < 5) {
+            $("#page").html('');
+        }
+        else {
+            box.options.total = Math.ceil(total / 5);
+            box.init();
+            $(".custom-pagination ul li").removeClass("current-page");
+            $(".custom-pagination ul li:eq(" + (parseInt(pageindex) - 1) + ")").addClass("current-page");
+        }
+    }
+
+</script>

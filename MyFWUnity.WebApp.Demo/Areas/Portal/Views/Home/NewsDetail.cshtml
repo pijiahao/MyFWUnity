@@ -1,0 +1,159 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_LayoutByNews.cshtml";
+}
+<style>
+
+
+    .main {
+        width: 100%;
+    }
+
+    .m-body {
+        width: 1024px;
+        margin: 0px auto;
+        padding-bottom: 30px;
+    }
+
+    .navbar-d {
+        width: 100%;
+        color: #366AB1;
+        background: url(/Areas/Portal/Content/Images/d1.png) no-repeat;
+        padding-left: 24px;
+        line-height: 28px;
+    }
+
+    .mb-content {
+        width: 90%;
+        box-shadow: 3px 3px #ccc;
+        position: relative;
+        padding-bottom: 30px;
+    }
+
+    .mb-content h1 {
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        padding: 0px;
+        margin: 0px;
+        margin-top: 10px;
+    }
+
+    .mb-content p {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .mb-content p span {
+        margin-left: 350px;
+        font-size: 12px;
+        color: #808080;
+    }
+
+    .mb-content p em {
+        margin-left: 30px;
+        font-size: 12px;
+        color: #808080;
+        font-style: normal;
+    }
+
+    .mb-content img.dt {
+        width: 600px;
+        margin: 0 auto;
+        margin-left: 170px;
+        margin-bottom: 20px;
+    }
+
+    .text-body {
+        width: 100%;
+        text-indent: 20px;
+        line-height: 25px;
+        color: #808080;
+        font-size: 14px;
+        overflow: hidden;
+        padding-right: 12px;
+    }
+
+    .mb-content span.rdl {
+        display: inline-block;
+        color: #808080;
+        text-align: right;
+        position: absolute;
+        bottom: 10px;
+        right: 0px;
+    }
+
+    .attac-list a {
+        margin-right: 10px;
+        margin-top: 8px;
+    }
+</style>
+<div class="main">
+    <div class="m-body">
+        <div class="navbar-d">
+            你的位置&nbsp;&nbsp;>&nbsp;&nbsp;<a href="/" > 首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="#" class="news-class"></a>
+        </div>
+        <div class="mb-content">
+            <h1 class="news-title"></h1>
+            <p><span class="news-date"></span><em class="news-author"></em><em class="news-imagesource"></em></p>
+            <div class="text-body">
+            </div>
+            <div class="attac-list">
+                附件：
+            </div>
+
+            <span class="rdl"></span>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        loadNews();
+    })
+    function loadNews() {
+        var id = MyFWUnity.CustomCommon.GetQueryString("id");
+        AjaxCustom.getAjax("/api/News/GetNewsByID?id=" + id, function (res) {
+            if (res) {
+                $(".nav li").removeClass("def");
+                switch (res.NewsClass) {
+                    case "会员之家":
+                        $(".n-hyzj").addClass("def");
+                        break;
+                    case "协会活动":
+                        $(".n-xhhd").addClass("def");
+                        break;
+                    case "学术交流":
+                        $(".n-xsjl").addClass("def");
+                        break;
+                    case "项目展示":
+                        $(".n-xmzs").addClass("def");
+                        break;
+                    case "BiM动态":
+                        $(".n-bimdt").addClass("def");
+                        break;
+                    case "政策指南":
+                        $(".n-zczn").addClass("def");
+                        break;
+                }
+                $(".news-class").html(res.NewsClass);
+                $(".news-class").attr("href", "/Portal/Home/NewsList?nc=" + res.NewsClass);
+                $(".news-title").html(res.Title);
+                $(".news-date").html(new Date(res.CreateDate).Format("yyyy-MM-dd"));
+                $(".news-author").html("作者：" + (res.Author == undefined ? "" : res.Author));
+                $(".news-imagesource").html("图源：" + (res.ImageSorce == undefined ? "" : res.ImageSorce));
+                $(".text-body").html(res.Body);
+                $(".rdl").html("阅读量（" + res.ReadCount + "）");
+                var attacHtml = '';
+                $.each(res.Attachments, function (key, item) {
+                    attacHtml += '<a  target="_blank" href="/api/File/DownloadByttachment?id=' + item.ID + '"><i class="fa fa-chain"></i>' + item.Name + '</a>';
+                })
+                $(".attac-list").append(attacHtml);
+            }
+            else {
+
+            }
+        })
+
+    }
+</script>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Permissions>
+  <PermissionClass Name="项目">
+    <Permission Type="System" Code="ProjectManager" Name="项目管理" />
+    <Permission Type="Project" Code="SingleProjectManager" Name="项目管理" />
+    <Permission Type="Project" Code="ProjectStatistic" Name="项目统计" />
+  </PermissionClass>
+  <PermissionClass Name="问题">
+    <Permission Type="Project" Code="IssueView" Name="问题查看" />
+    <Permission Type="Project" Code="IssueManager" Name="问题管理" />
+  </PermissionClass>
+  <PermissionClass Name="用户">
+    <Permission  Type="System" Code="UserManager" Name="用户管理" />
+  </PermissionClass>
+  <PermissionClass Name="系统" >
+    <Permission Type="System" Code="SystemLog" Name="系统日志" />
+    <Permission Type="System" Code="EmailManager" Name="邮件管理" />
+    <Permission Type="System" Code="SystemConfig" Name="系统配置" />
+  </PermissionClass>
+</Permissions>

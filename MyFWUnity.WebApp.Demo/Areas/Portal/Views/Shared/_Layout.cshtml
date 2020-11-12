@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Layout/css")
+    @Scripts.Render("~/Layout/js")
+    <link href="~/Content/Fonts/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Portal/Content/CSS/layout.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="header-1">
+        <div class="header">
+            <div class="header-top">
+                <p>上海市浦东新区建筑信息模型应用技术协会</p>
+                <span><a href="/Portal/Account/Login">会员登录</a><em>|</em><a href="#">关于&nbsp;About</a></span>
+            </div>
+
+        </div>
+        <div class="header-logo">
+            <div class="logo ">
+                <div class="clearfix">
+                    <a href="/Portal/Home/Index"><img src="~/Areas/Portal/Content/Images/logo.png" /></a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li class="def"><a href="#">首页</a></li>
+                        <li><a href="#">政策指南</a></li>
+                        <li><a href="#">人才服务</a></li>
+                        <li><a href="#">BIM百科</a></li>
+                        <li><a href="#">产业工会</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search">
+                <div class="search-main clearfix">
+                    <div class="search-body clearfix">
+                        <input placeholder="请输入关键字搜索" id="search-ipt" />
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="render-body">
+        @RenderBody()
+    </div>
+    <div class="footer-layout">
+        <div class="footer-main clearfix">
+            <div class="select-con">
+                <select class="szdjg">
+                    <option value="">市政度机构网站</option>
+                </select>
+            </div>
+            <div class="select-con">
+                <select class="qgjsxt">
+                    <option value="">全国建设系统</option>
+                </select>
+            </div>
+            <div class="select-con">
+                <select class="bsxgbm">
+                    <option value="">本市相关部门</option>
+                </select>
+            </div>
+            <div class="select-con">
+                <select class="xghedw">
+                    <option value="">相关行业单位</option>
+                </select>
+            </div>
+
+
+
+
+        </div>
+        <p>主办单位：上海市浦东新区建筑信息模型应用技术协会</p>
+    </div>
+
+    <script>
+        $(function () {
+            $("#search-ipt").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var txt = $(this).val();
+                    if (txt != "") {
+                        window.location.href = "/Portal/Home/Search?searchText=" + txt;
+                    }
+                }
+            });
+            $(".search-body span").click(function () {
+                window.location.href = "/Portal/Home/Search?searchText=";
+            });
+            $(".select-con select").change(function () {
+                var val = $(this).val();
+                if (val != "") {
+                    window.open(val);
+                }
+            });
+
+            GetUnitLinkByModule(function (res) {
+                var strHtml = '';
+                $.each(res, function (key, item) {
+                    switch (item.Module) {
+                        case "市政度机构网站":
+                            $(".szdjg").append(' <option value="' + item.Link + '">' + item.Name + '</option>');
+                            break;
+                        case "全国建设系统":
+                            $(".qgjsxt").append(' <option value="' + item.Link + '">' + item.Name + '</option>');
+                            break;
+                        case "本市相关部门":
+                            $(".bsxgbm").append(' <option value="' + item.Link + '">' + item.Name + '</option>');
+                            break;
+                        case "相关行业单位":
+                            $(".xghedw").append(' <option value="' + item.Link + '">' + item.Name + '</option>');
+                            break;
+                    }
+                });
+            }, "市政度机构网站,全国建设系统,本市相关部门,相关行业单位", 3);
+
+        })
+
+        function GetUnitLinkByModule(callback, name, count) {
+            AjaxCustom.getAjax("/api/UnitLink/GetUnitLinkByModule?modules=" + name + "&count=" + count, function (res) {
+                if (res) {
+                    callback(res);
+
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>

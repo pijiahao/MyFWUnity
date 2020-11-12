@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F243107-49EA-4AF1-953F-B04851CCC1F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyFWUnity.Module.Base</RootNamespace>
+    <AssemblyName>MyFWUnity.Module.Base</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContracts\EmailMessageDataInfo.cs" />
+    <Compile Include="DataContracts\EntryRelationDataInfo.cs" />
+    <Compile Include="DataContracts\MenuDataInfo.cs" />
+    <Compile Include="DataContracts\PermissionDataInfo.cs" />
+    <Compile Include="DataContracts\UserDataInfo.cs" />
+    <Compile Include="Services\Default\EmailMessageService.cs" />
+    <Compile Include="Services\Default\EntryRelationService.cs" />
+    <Compile Include="Services\Default\MenuService.cs" />
+    <Compile Include="Services\Default\PermissionService.cs" />
+    <Compile Include="Services\Default\SysService.cs" />
+    <Compile Include="Services\Default\UserService.cs" />
+    <Compile Include="Services\Interfaces\IEmailMessageService.cs" />
+    <Compile Include="Services\Interfaces\IEntryRelationService.cs" />
+    <Compile Include="Services\Interfaces\IMenuService.cs" />
+    <Compile Include="Services\Interfaces\IPermissionService.cs" />
+    <Compile Include="Services\Interfaces\ISysService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Default\EmailMessageRepository.cs" />
+    <Compile Include="Repositories\Default\EntryRelationRepository.cs" />
+    <Compile Include="Repositories\Default\UserRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEmailMessageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEntryRelationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyFWUnity.Common\MyFWUnity.Common.csproj">
+      <Project>{79f136a3-9110-485c-85c9-83d8b749fa2c}</Project>
+      <Name>MyFWUnity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.Core\MyFWUnity.Core.csproj">
+      <Project>{0375f69c-5c2b-416c-a93a-4acc7e3c7074}</Project>
+      <Name>MyFWUnity.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.DataAccess\MyFWUnity.DataAccess.csproj">
+      <Project>{308784d6-0d2d-4523-b1f5-c0893160beed}</Project>
+      <Name>MyFWUnity.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

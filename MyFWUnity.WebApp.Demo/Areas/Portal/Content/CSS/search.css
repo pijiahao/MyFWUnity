@@ -1,0 +1,280 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.header {
+    background: #1A57A8;
+    width: 100%;
+    color: #fff;
+}
+
+.header-top {
+    width: 1024px;
+    margin: 0px auto;
+    height: 30px;
+    line-height: 30px;
+}
+
+.header-top p {
+    margin-left: 20px;
+    float: left;
+    margin-bottom: 0px;
+}
+
+.header-top span {
+    float: right;
+    margin-right: 30px;
+}
+
+.header-top span a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-top span em {
+    margin: 0 10px;
+    position: relative;
+    top: -2px;
+}
+
+.header-logo {
+    width: 100%;
+    height: 100px;
+}
+
+.search-main {
+    width: 1024px;
+    margin: 0px auto;
+}
+
+.search-body {
+    float: left;
+    border: 2px solid #1D59A9;
+    border-radius: 8px;
+    margin-top: 50px;
+    width: 554px;
+    margin-left: 40px;
+}
+
+.search-body input {
+    width: 500px;
+    display: inline-block;
+    line-height: 35px;
+    text-indent: 20px;
+    border: none;
+    border: 0;
+    outline: none;
+    float: left;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.search-body span {
+    background: url(/Areas/Portal/Content/Images/search.png) no-repeat #1D59A9 10px;
+    display: inline-block;
+    width: 50px;
+    height: 35px;
+    float: left;
+    border-radius: 0 5px 5px 0px;
+    cursor: pointer;
+}
+
+.header-search {
+    width: 100%;
+}
+
+.search-logo img {
+    width: 100px;
+}
+
+.search-logo {
+    float: left;
+    width: 100px;
+}
+
+.search-content {
+    width: 100%;
+}
+
+.search-nav {
+    width: 100%;
+    height: 45px;
+    background: url(/Areas/Portal/Content/Images/search-navbg.png) no-repeat;
+}
+
+.nav-content {
+    width: 1024px;
+    margin: 0 auto;
+    padding-left: 30px;
+}
+
+.nav-content ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-content ul li {
+    float: left;
+    line-height: 45px;
+    list-style: none;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #6A6A6A;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.nav-content ul li.def {
+    color: #000;
+    font-weight: 500;
+    border-bottom: 3px solid #1A57A8;
+}
+
+.nav-content ul li em {
+    font-size: 12px;
+    color: red;
+    font-style: normal;
+}
+
+.nav-filtr {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.nf-main {
+    width: 1024px;
+    margin: 0 auto;
+    padding-left: 50px;
+    margin-top: 30px;
+}
+
+.nav-filtr p {
+    margin: 0px;
+    float: left;
+    color: #888;
+}
+
+.nav-filtr p.filtr {
+    margin-left: 20px;
+    height: 30px;
+    position: relative;
+    background: #FBFBFB;
+    width: 172px;
+}
+
+.nav-filtr p a {
+    color: #888;
+    text-decoration: none;
+}
+
+.desc-c {
+    padding: 0 20px;
+    line-height: 30px;
+}
+
+.f-desc {
+    position: absolute;
+    border: 1px solid #808080;
+    width: 140px;
+    right: 0px;
+    top: 30px;
+    text-align: center;
+    line-height: 30px;
+    display: none;
+    background: #fff;
+}
+
+.c-body {
+    width: 100%;
+}
+
+.c-main {
+    width: 1024px;
+    margin: 0 auto;
+    padding-left: 50px;
+}
+
+.c-left {
+    float: left;
+    width: 700px;
+    border-right: 2px solid #ccc;
+    min-height: 600px;
+    padding-right: 10px;
+}
+
+.c-content {
+    width: 100%;
+}
+
+.c-item {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.c-item:first-child {
+    margin-top: 0px;
+}
+
+.c-item h1 {
+    font-size: 20px;
+    color: #1957A7;
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.c-item p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0px;
+    letter-spacing: 1px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.c-right {
+    float: left;
+    width: 274px;
+    padding-left: 30px;
+}
+
+.c-right h1 {
+    font-size: 16px;
+    margin: 0px;
+    font-weight: 500;
+    color: #000;
+}
+
+.c-right ul {
+    margin: 0px;
+    margin-top: 15px;
+}
+
+.c-right ul li {
+    list-style: none;
+    line-height: 28px;
+    text-decoration: underline;
+}
+.ci-date{
+    color:#808080;
+}
+.ci-date span{
+    display:inline-block;
+    margin-right:10px;
+}
+
+.ci-date span em{
+    font-style:normal;
+}
+.c-list{
+    height:560px;
+}

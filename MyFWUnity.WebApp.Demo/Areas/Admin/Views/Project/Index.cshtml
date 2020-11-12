@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "项目管理";
+}
+@Styles.Render("~/Content/UploadFile/css")
+@Scripts.Render("~/Content/UploadFile/js")
+<script src="~/Content/Plugins/CheckList/checklist.js"></script>
+<script src="~/Content/JS/CustomData.js"></script>
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/Project/QueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        <th data-field="ID" data-width="350">ID</th>
+                        <th data-field="Name" data-width="150">项目名称</th>
+                        <th data-field="Description">描述</th>
+                        <th data-field="CreateUser" data-width="100" data-formatter="operateUserFormatter">创建用户</th>
+                        <th data-field="CreateDate" data-width="150" data-formatter="operateDateFormatter">创建时间</th>
+                        <th data-field="" data-width="150" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="modal fade in" id="Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">项目信息</h4>
+                </div>
+                <form id="Form" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" name="ID" value="" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Name" placeholder="请输入名称（必填）" id="Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Description" placeholder="请输入描述（选填）" id="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group upload-file">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">测试多选</label>
+                            <div class="col-sm-10 " id="TestCheckList">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default save-info">保存</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{Html.RenderPartial("~/Areas/Admin/Views/Partial/DocUploadDialog.cshtml");}
+<script type="text/javascript">
+    var upload = new DocUploadFile();
+    upload.uploadsuccesscallback = function () {
+        var id = $("#id").val();
+        AjaxCustom.getAjax("/api/File/UploadFiles?batchUploadID=" + upload.batchUploadID + "&enityID=" + id + "&enityType=Project", function () {
+            upload.hidedialog();
+        });
+        //upload.getBatchUploadedTempFiles(function (data) {
+        //    upload.uploadfilecontrol.uploadfile("pushBatchUploadIDs", upload.batchUploadID);
+        //    upload.uploadfilecontrol.uploadfile("appendLoad", data);
+        //})
+    }
+</script>
+<script>
+    AddTable({
+        placeholder: "搜索项目名称或者描述",
+        addCallback: function () {
+            $("#id").val("");
+            $("#Name").val('');
+            $("#Description").val('');
+            $(".upload-file").uploadfile("refresh");
+            $('#Modal').modal('show');
+        }
+    });
+    WOEvents.Update = function (row) {
+        $("#id").val(row.ID);
+        $("#Name").val(row.Name);
+        $("#Description").val(row.Description);
+        $(".upload-file").uploadfile("refresh");
+        $(".upload-file").uploadfile("load", MyFWUnity.CustomCommon.GetAttachmentsData(row));
+        // $("#Styles").checklist("checkData", row.Styles);
+        upload.showdialog();
+        $('#Modal').modal('show');
+    }
+    WOEvents.Delete = function (row) {
+        MyFWUnity.CustomCommon.Delete("Project", row.ID, function () {
+            $("#table").bootstrapTable('refresh');
+        })
+    }
+
+    $(function () {
+        $(".save-info").click(function () {
+            //  var HotelType = $("#HotelType").checklist("getValue");
+            MyFWUnity.CustomCommon.AddOrUpdateByFormData("Form", "Project", $(".upload-file"), function () {
+                $('#Modal').modal('hide');
+                $("#table").bootstrapTable('refresh');
+            })
+        });
+
+        $(".upload-file").uploadfile({
+            "title": "上传附件",
+            deletefile: function (data, obj, uploadfileobj) {
+                AjaxCustom.getAjax("/api/Sys/DeleteAttachmentsById?id=" + data.ID, function (res) {
+                    uploadfileobj.removefile(obj);
+                });
+            }
+        });
+
+        $("#TestCheckList").checklist({
+            data: CustomData.Test.Data,
+            radio: true,
+            click: function (value) {
+
+            }
+        });
+    })
+
+</script>

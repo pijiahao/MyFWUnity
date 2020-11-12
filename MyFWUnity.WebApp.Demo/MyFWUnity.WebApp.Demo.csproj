@@ -1,0 +1,885 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD661B13-CEA4-402D-86A0-7C6BCCE7CD0E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyFWUnity.WebApp.Demo</RootNamespace>
+    <AssemblyName>MyFWUnity.WebApp.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MyFWUnity.WebApp.Demo.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.12\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.19.3.0\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UnitLinkController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Portal\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Portal\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Images\t1.jpg" />
+    <Content Include="Areas\Admin\Content\Images\t2.jpg" />
+    <Content Include="Areas\Admin\Content\Images\t3.jpg" />
+    <Content Include="Areas\Portal\Content\CSS\index.css" />
+    <Content Include="Areas\Portal\Content\CSS\layout-news.css" />
+    <Content Include="Areas\Portal\Content\CSS\layout.css" />
+    <Content Include="Areas\Portal\Content\CSS\search.css" />
+    <Content Include="Areas\Portal\Content\Images\bottom.png" />
+    <Content Include="Areas\Portal\Content\Images\d1.png" />
+    <Content Include="Areas\Portal\Content\Images\d2.png" />
+    <Content Include="Areas\Portal\Content\Images\ecode.jpg" />
+    <Content Include="Areas\Portal\Content\Images\h1.png" />
+    <Content Include="Areas\Portal\Content\Images\left.png" />
+    <Content Include="Areas\Portal\Content\Images\login_bg.jpg" />
+    <Content Include="Areas\Portal\Content\Images\logo.png" />
+    <Content Include="Areas\Portal\Content\Images\lp.png" />
+    <Content Include="Areas\Portal\Content\Images\lun.png" />
+    <Content Include="Areas\Portal\Content\Images\m1.png" />
+    <Content Include="Areas\Portal\Content\Images\m1bg.png" />
+    <Content Include="Areas\Portal\Content\Images\m2.png" />
+    <Content Include="Areas\Portal\Content\Images\m2bg.png" />
+    <Content Include="Areas\Portal\Content\Images\m3.png" />
+    <Content Include="Areas\Portal\Content\Images\m3bg.png" />
+    <Content Include="Areas\Portal\Content\Images\m4.png" />
+    <Content Include="Areas\Portal\Content\Images\m4bg.png" />
+    <Content Include="Areas\Portal\Content\Images\m5.png" />
+    <Content Include="Areas\Portal\Content\Images\m5bg.png" />
+    <Content Include="Areas\Portal\Content\Images\m6.png" />
+    <Content Include="Areas\Portal\Content\Images\m6bg.png" />
+    <Content Include="Areas\Portal\Content\Images\nav.png" />
+    <Content Include="Areas\Portal\Content\Images\s1.png" />
+    <Content Include="Areas\Portal\Content\Images\s2.jpg" />
+    <Content Include="Areas\Portal\Content\Images\s3.jpg" />
+    <Content Include="Areas\Portal\Content\Images\s4.png" />
+    <Content Include="Areas\Portal\Content\Images\s5.png" />
+    <Content Include="Areas\Portal\Content\Images\search-desc.png" />
+    <Content Include="Areas\Portal\Content\Images\search-logo.png" />
+    <Content Include="Areas\Portal\Content\Images\search-navbg.png" />
+    <Content Include="Areas\Portal\Content\Images\search.png" />
+    <Content Include="Areas\Portal\Content\Images\searchbg.png" />
+    <Content Include="Areas\Portal\Content\Images\silde.png" />
+    <Content Include="Areas\Portal\Content\Images\silde1.png" />
+    <Content Include="Areas\Portal\Content\Images\silde2.png" />
+    <Content Include="Areas\Portal\Content\Images\silde3.png" />
+    <Content Include="Areas\Portal\Content\Images\t1.jpg" />
+    <Content Include="Areas\Portal\Content\Images\t2.jpg" />
+    <Content Include="Areas\Portal\Content\Images\t3.jpg" />
+    <Content Include="Areas\Portal\Content\Images\t4.jpg" />
+    <Content Include="Areas\Portal\Content\Images\t5.jpg" />
+    <Content Include="Areas\Portal\Content\Images\t6.jpg" />
+    <Content Include="Areas\Portal\Content\Images\weixin.png" />
+    <Content Include="Areas\Portal\Content\Images\weizhi.png" />
+    <Content Include="Areas\Portal\Content\JS\carousel.js" />
+    <Content Include="Areas\Portal\Content\JS\script.js" />
+    <Content Include="Content\Appjs\Base\MyIndex.js" />
+    <Content Include="Content\CSS\custom.css" />
+    <Content Include="Content\JS\AjaxCustom.js" />
+    <Content Include="Content\JS\Common.js" />
+    <Content Include="Content\JS\Custom.js" />
+    <Content Include="Content\JS\CustomData.js" />
+    <Content Include="Content\Plugins\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="Content\Plugins\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="Content\Plugins\bootstrap-daterangepicker\drp.png" />
+    <Content Include="Content\Plugins\bootstrap-daterangepicker\moment.js" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\bootstrap-progressbar.js" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.3.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.3.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.4.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.0.4.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.1.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.1.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.1.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.1.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.2.2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-2.3.2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0-rc1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0-rc1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0-rc2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0-rc2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.3.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.0.3.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.1.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.1.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.1.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.1.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.2.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.2.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.0.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.0.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.1.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.1.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.2.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.2.min.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.css" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Content\Plugins\bootstrap-select\bootstrap-select.css" />
+    <Content Include="Content\Plugins\bootstrap-select\bootstrap-select.js" />
+    <Content Include="Content\Plugins\bootstrap-table\bootstrap-table.js" />
+    <Content Include="Content\Plugins\bootstrap-treeview\bootstrap-treeview.js" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Content\Plugins\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Content\Plugins\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Content\Plugins\bootstrap\dist\js\npm.js" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\bootstrap\Gruntfile.js" />
+    <Content Include="Content\Plugins\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="Content\Plugins\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="Content\Plugins\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="Content\Plugins\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="Content\Plugins\bootstrap\js\affix.js" />
+    <Content Include="Content\Plugins\bootstrap\js\alert.js" />
+    <Content Include="Content\Plugins\bootstrap\js\button.js" />
+    <Content Include="Content\Plugins\bootstrap\js\carousel.js" />
+    <Content Include="Content\Plugins\bootstrap\js\collapse.js" />
+    <Content Include="Content\Plugins\bootstrap\js\dropdown.js" />
+    <Content Include="Content\Plugins\bootstrap\js\modal.js" />
+    <Content Include="Content\Plugins\bootstrap\js\popover.js" />
+    <Content Include="Content\Plugins\bootstrap\js\scrollspy.js" />
+    <Content Include="Content\Plugins\bootstrap\js\tab.js" />
+    <Content Include="Content\Plugins\bootstrap\js\tooltip.js" />
+    <Content Include="Content\Plugins\bootstrap\js\transition.js" />
+    <Content Include="Content\Plugins\bootstrap\package.js" />
+    <Content Include="Content\Fonts\css\font-awesome.css" />
+    <Content Include="Content\Fonts\css\font-awesome.min.css" />
+    <Content Include="Content\Fonts\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\CheckList\checklist.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\css\fileinput.css" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\img\doc-upload-icon.png" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\img\loading-sm.gif" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\img\loading.gif" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\fileinput.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\locales\zh.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\canvas-to-blob.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\canvas-to-blob.min.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\purify.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\purify.min.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\sortable.js" />
+    <Content Include="Content\Plugins\DocUpload\bootstrap-fileinput\js\plugins\sortable.min.js" />
+    <Content Include="Content\Plugins\DocUpload\docupload.css" />
+    <Content Include="Content\Plugins\DocUpload\docupload.js" />
+    <Content Include="Content\Plugins\DocUpload\guid.js" />
+    <Content Include="Content\Plugins\DocUpload\spark-md5.js" />
+    <Content Include="Content\Plugins\DocUpload\uploadfile.css" />
+    <Content Include="Content\Plugins\DocUpload\uploadfilefordoc.js" />
+    <Content Include="Content\Plugins\jQuery\jquery-form.js" />
+    <Content Include="Content\Plugins\jQuery\jQuery-v2.1.0.js" />
+    <Content Include="Content\Plugins\jQuery\jquery-validate\jquery-validate.min.js" />
+    <Content Include="Content\Plugins\jQuery\jquery-validate\messages_zh.js" />
+    <Content Include="Content\Plugins\KindEditor\attached\image\20180105\20180105135710_2415.jpg" />
+    <Content Include="Content\Plugins\KindEditor\attached\image\20180105\20180105135854_1865.jpg" />
+    <Content Include="Content\Plugins\KindEditor\attached\image\20180105\20180105135924_4119.jpg" />
+    <Content Include="Content\Plugins\KindEditor\attached\image\20180105\20180105140102_0844.jpg" />
+    <Content Include="Content\Plugins\KindEditor\attached\image\20180108\20180108101131_0237.jpg" />
+    <Content Include="Content\Plugins\KindEditor\dll\LitJSON.dll" />
+    <Content Include="Content\Plugins\KindEditor\kindeditor-all-min.js" />
+    <Content Include="Content\Plugins\KindEditor\kindeditor-all.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\ar.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\en.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\ko.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\ru.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\zh-CN.js" />
+    <Content Include="Content\Plugins\KindEditor\lang\zh-TW.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\anchor\anchor.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\autoheight\autoheight.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\baidumap\baidumap.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\baidumap\index.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\baidumap\map.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\clearhtml\clearhtml.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\code\code.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\code\prettify.css" />
+    <Content Include="Content\Plugins\KindEditor\plugins\code\prettify.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\emoticons.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\0.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\1.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\10.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\100.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\101.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\102.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\103.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\104.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\105.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\106.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\107.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\108.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\109.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\11.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\110.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\111.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\112.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\113.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\114.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\115.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\116.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\117.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\118.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\119.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\12.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\120.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\121.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\122.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\123.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\124.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\125.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\126.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\127.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\128.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\129.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\13.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\130.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\131.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\132.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\133.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\134.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\14.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\15.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\16.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\17.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\18.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\19.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\2.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\20.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\21.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\22.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\23.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\24.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\25.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\26.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\27.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\28.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\29.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\3.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\30.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\31.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\32.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\33.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\34.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\35.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\36.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\37.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\38.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\39.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\4.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\40.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\41.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\42.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\43.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\44.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\45.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\46.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\47.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\48.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\49.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\5.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\50.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\51.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\52.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\53.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\54.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\55.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\56.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\57.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\58.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\59.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\6.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\60.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\61.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\62.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\63.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\64.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\65.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\66.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\67.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\68.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\69.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\7.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\70.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\71.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\72.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\73.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\74.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\75.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\76.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\77.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\78.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\79.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\8.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\80.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\81.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\82.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\83.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\84.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\85.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\86.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\87.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\88.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\89.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\9.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\90.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\91.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\92.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\93.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\94.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\95.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\96.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\97.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\98.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\99.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\emoticons\images\static.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\filemanager.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\images\file-16.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\images\file-64.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\filemanager\images\go-up.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\fixtoolbar\fixtoolbar.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\flash\flash.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\image\image.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\image\images\align_left.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\image\images\align_right.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\image\images\align_top.gif" />
+    <Content Include="Content\Plugins\KindEditor\plugins\image\images\refresh.png" />
+    <Content Include="Content\Plugins\KindEditor\plugins\insertfile\insertfile.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\lineheight\lineheight.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\link\link.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\map\map.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\map\map.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\media\media.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\multiimage\images\image.png" />
+    <Content Include="Content\Plugins\KindEditor\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="Content\Plugins\KindEditor\plugins\multiimage\images\select-files-zh-CN.png" />
+    <Content Include="Content\Plugins\KindEditor\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="Content\Plugins\KindEditor\plugins\multiimage\multiimage.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\pagebreak\pagebreak.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\plainpaste\plainpaste.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\preview\preview.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\quickformat\quickformat.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\table\table.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\template\html\1.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\template\html\2.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\template\html\3.html" />
+    <Content Include="Content\Plugins\KindEditor\plugins\template\template.js" />
+    <Content Include="Content\Plugins\KindEditor\plugins\wordpaste\wordpaste.js" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\anchor.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\blank.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\flash.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\loading.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\media.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\common\rm.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\default\background.png" />
+    <Content Include="Content\Plugins\KindEditor\themes\default\default.css" />
+    <Content Include="Content\Plugins\KindEditor\themes\default\default.png" />
+    <Content Include="Content\Plugins\KindEditor\themes\qq\editor.gif" />
+    <Content Include="Content\Plugins\KindEditor\themes\qq\qq.css" />
+    <Content Include="Content\Plugins\KindEditor\themes\simple\simple.css" />
+    <Content Include="Content\Plugins\sweetalert\sweetalert.css" />
+    <Content Include="Content\Plugins\sweetalert\sweetalert.js" />
+    <Content Include="Content\Plugins\UploadFile\fileinput.css" />
+    <Content Include="Content\Plugins\UploadFile\images\excel.png" />
+    <Content Include="Content\Plugins\UploadFile\images\notfile.jpg" />
+    <Content Include="Content\Plugins\UploadFile\images\notimage.png" />
+    <Content Include="Content\Plugins\UploadFile\images\pdf.png" />
+    <Content Include="Content\Plugins\UploadFile\images\ppt.png" />
+    <Content Include="Content\Plugins\UploadFile\images\word.png" />
+    <Content Include="Content\Plugins\UploadFile\uploadfile.css" />
+    <Content Include="Content\Plugins\UploadFile\uploadfile.js" />
+    <Content Include="Content\Plugins\UploadImage\uploadimage.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Log.xml" />
+    <Content Include="SystemConfiguration\Menu.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SystemConfiguration\Permission.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Template\Email\Template.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Plugins\bootstrap-daterangepicker\daterangepicker.scss" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\.bower.json" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\bower.json" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\CHANGELOG.md" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\CONTRIBUTORS.md" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\less\bootstrap-progressbar-2.x.x.less" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\less\bootstrap-progressbar-3.0.0-3.1.x.less" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\less\bootstrap-progressbar-3.2.0.less" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\less\bootstrap-progressbar-3.3.0-3.x.x.less" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\LICENSE" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\package.json" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\README.md" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\scss\bootstrap-progressbar-2.x.x.scss" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\scss\bootstrap-progressbar-3.0.0-3.1.x.scss" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\scss\bootstrap-progressbar-3.2.0.scss" />
+    <Content Include="Content\Plugins\bootstrap-progressbar\scss\bootstrap-progressbar-3.3.0-3.x.x.scss" />
+    <Content Include="Content\Plugins\bootstrap\.bower.json" />
+    <Content Include="Content\Plugins\bootstrap\bower.json" />
+    <Content Include="Content\Plugins\bootstrap\CHANGELOG.md" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Content\Plugins\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\Plugins\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Plugins\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Plugins\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Plugins\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Plugins\bootstrap\grunt\.jshintrc" />
+    <Content Include="Content\Plugins\bootstrap\grunt\configBridge.json" />
+    <Content Include="Content\Plugins\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="Content\Plugins\bootstrap\js\.jscsrc" />
+    <Content Include="Content\Plugins\bootstrap\js\.jshintrc" />
+    <Content Include="Content\Plugins\bootstrap\less\.csscomb.json" />
+    <Content Include="Content\Plugins\bootstrap\less\.csslintrc" />
+    <Content Include="Content\Plugins\bootstrap\less\alerts.less" />
+    <Content Include="Content\Plugins\bootstrap\less\badges.less" />
+    <Content Include="Content\Plugins\bootstrap\less\bootstrap.less" />
+    <Content Include="Content\Plugins\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Content\Plugins\bootstrap\less\button-groups.less" />
+    <Content Include="Content\Plugins\bootstrap\less\buttons.less" />
+    <Content Include="Content\Plugins\bootstrap\less\carousel.less" />
+    <Content Include="Content\Plugins\bootstrap\less\close.less" />
+    <Content Include="Content\Plugins\bootstrap\less\code.less" />
+    <Content Include="Content\Plugins\bootstrap\less\component-animations.less" />
+    <Content Include="Content\Plugins\bootstrap\less\dropdowns.less" />
+    <Content Include="Content\Plugins\bootstrap\less\forms.less" />
+    <Content Include="Content\Plugins\bootstrap\less\glyphicons.less" />
+    <Content Include="Content\Plugins\bootstrap\less\grid.less" />
+    <Content Include="Content\Plugins\bootstrap\less\input-groups.less" />
+    <Content Include="Content\Plugins\bootstrap\less\jumbotron.less" />
+    <Content Include="Content\Plugins\bootstrap\less\labels.less" />
+    <Content Include="Content\Plugins\bootstrap\less\list-group.less" />
+    <Content Include="Content\Plugins\bootstrap\less\media.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\alerts.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\buttons.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\center-block.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\forms.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\gradients.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\grid.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\image.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\labels.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\list-group.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\opacity.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\pagination.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\panels.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\reset-text.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\resize.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\size.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\table-row.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="Content\Plugins\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\Plugins\bootstrap\less\modals.less" />
+    <Content Include="Content\Plugins\bootstrap\less\navbar.less" />
+    <Content Include="Content\Plugins\bootstrap\less\navs.less" />
+    <Content Include="Content\Plugins\bootstrap\less\normalize.less" />
+    <Content Include="Content\Plugins\bootstrap\less\pager.less" />
+    <Content Include="Content\Plugins\bootstrap\less\pagination.less" />
+    <Content Include="Content\Plugins\bootstrap\less\panels.less" />
+    <Content Include="Content\Plugins\bootstrap\less\popovers.less" />
+    <Content Include="Content\Plugins\bootstrap\less\print.less" />
+    <Content Include="Content\Plugins\bootstrap\less\progress-bars.less" />
+    <Content Include="Content\Plugins\bootstrap\less\responsive-embed.less" />
+    <Content Include="Content\Plugins\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Content\Plugins\bootstrap\less\scaffolding.less" />
+    <Content Include="Content\Plugins\bootstrap\less\tables.less" />
+    <Content Include="Content\Plugins\bootstrap\less\theme.less" />
+    <Content Include="Content\Plugins\bootstrap\less\thumbnails.less" />
+    <Content Include="Content\Plugins\bootstrap\less\tooltip.less" />
+    <Content Include="Content\Plugins\bootstrap\less\type.less" />
+    <Content Include="Content\Plugins\bootstrap\less\utilities.less" />
+    <Content Include="Content\Plugins\bootstrap\less\variables.less" />
+    <Content Include="Content\Plugins\bootstrap\less\wells.less" />
+    <Content Include="Content\Plugins\bootstrap\LICENSE" />
+    <Content Include="Content\Plugins\bootstrap\nuget\bootstrap.less.nuspec" />
+    <Content Include="Content\Plugins\bootstrap\nuget\bootstrap.nuspec" />
+    <Content Include="Content\Plugins\bootstrap\nuget\MyGet.ps1" />
+    <Content Include="Content\Plugins\bootstrap\package.json" />
+    <Content Include="Content\Plugins\bootstrap\README.md" />
+    <Content Include="Content\Fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\fonts\FontAwesome.otf" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Fonts\less\animated.less" />
+    <Content Include="Content\Fonts\less\bordered-pulled.less" />
+    <Content Include="Content\Fonts\less\core.less" />
+    <Content Include="Content\Fonts\less\fixed-width.less" />
+    <Content Include="Content\Fonts\less\font-awesome.less" />
+    <Content Include="Content\Fonts\less\icons.less" />
+    <Content Include="Content\Fonts\less\larger.less" />
+    <Content Include="Content\Fonts\less\list.less" />
+    <Content Include="Content\Fonts\less\mixins.less" />
+    <Content Include="Content\Fonts\less\path.less" />
+    <Content Include="Content\Fonts\less\rotated-flipped.less" />
+    <Content Include="Content\Fonts\less\screen-reader.less" />
+    <Content Include="Content\Fonts\less\spinning.less" />
+    <Content Include="Content\Fonts\less\stacked.less" />
+    <Content Include="Content\Fonts\less\variables.less" />
+    <Content Include="Content\Fonts\scss\font-awesome.scss" />
+    <Content Include="Content\Fonts\scss\_animated.scss" />
+    <Content Include="Content\Fonts\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Fonts\scss\_core.scss" />
+    <Content Include="Content\Fonts\scss\_fixed-width.scss" />
+    <Content Include="Content\Fonts\scss\_icons.scss" />
+    <Content Include="Content\Fonts\scss\_larger.scss" />
+    <Content Include="Content\Fonts\scss\_list.scss" />
+    <Content Include="Content\Fonts\scss\_mixins.scss" />
+    <Content Include="Content\Fonts\scss\_path.scss" />
+    <Content Include="Content\Fonts\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Fonts\scss\_screen-reader.scss" />
+    <Content Include="Content\Fonts\scss\_spinning.scss" />
+    <Content Include="Content\Fonts\scss\_stacked.scss" />
+    <Content Include="Content\Fonts\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Partial\AllModalPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Sys\Email.cshtml" />
+    <Content Include="Areas\Admin\Views\Sys\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sys\Log.cshtml" />
+    <Content Include="Areas\Admin\Views\Sys\Slide.cshtml" />
+    <Content Include="Areas\Admin\Views\UnitLink\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\MyIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Portal\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\NewsDetail.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\NewsList.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\Search.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_LayoutByNews.cshtml" />
+    <Content Include="Areas\Portal\Views\Web.config" />
+    <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Project\UserManager.cshtml" />
+    <Content Include="Areas\Admin\Views\Partial\DocUploadDialog.cshtml" />
+    <None Include="packages.config" />
+    <Content Include="Unity.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyFWUnity.Common\MyFWUnity.Common.csproj">
+      <Project>{79f136a3-9110-485c-85c9-83d8b749fa2c}</Project>
+      <Name>MyFWUnity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.Core\MyFWUnity.Core.csproj">
+      <Project>{0375F69C-5C2B-416C-A93A-4ACC7E3C7074}</Project>
+      <Name>MyFWUnity.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.DataAccess\MyFWUnity.DataAccess.csproj">
+      <Project>{308784d6-0d2d-4523-b1f5-c0893160beed}</Project>
+      <Name>MyFWUnity.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.Module.Base\MyFWUnity.Module.Base.csproj">
+      <Project>{4F243107-49EA-4AF1-953F-B04851CCC1F7}</Project>
+      <Name>MyFWUnity.Module.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.Module.Project\MyFWUnity.Module.Project.csproj">
+      <Project>{fc01af79-0146-489c-b3d8-4f464b52e713}</Project>
+      <Name>MyFWUnity.Module.Project</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.WebApp.Infrastructure\MyFWUnity.WebApp.Infrastructure.csproj">
+      <Project>{8E3C64E4-008A-4622-931F-AC6C930DC6EE}</Project>
+      <Name>MyFWUnity.WebApp.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFWUnity.WebApp.WebAPI\MyFWUnity.WebApp.WebAPI.csproj">
+      <Project>{e89133b8-e045-4f9d-8384-95198e6d82fd}</Project>
+      <Name>MyFWUnity.WebApp.WebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63001</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63001/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

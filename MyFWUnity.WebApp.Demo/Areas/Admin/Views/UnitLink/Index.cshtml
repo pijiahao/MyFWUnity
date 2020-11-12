@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "链接管理";
+}
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-body panel_body">
+            <table data-toggle="table" id="table" class="table table-hover" data-page-size="10"
+                   data-query-params-type=""
+                   data-query-params=customquery
+                   data-side-pagination="server"
+                   data-url="/api/UnitLink/QueryPage"
+                   data-pagination="true">
+                <thead>
+                    <tr>
+                        <th data-field="ID" data-width="350">ID</th>
+                        <th data-field="Module">模块</th>
+                        <th data-field="Name">单位名称</th>
+                        <th data-field="Link">链接</th>
+                        <th data-field="Remark">备注</th>
+                        <th data-field="CreateDate" data-formatter="operateDateFormatter">创建时间</th>
+                        <th data-field="" data-width="150" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<div class="modal fade in" id="Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">链接信息</h4>
+                </div>
+                <form id="Form" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="id" name="ID" value="" />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">模块</label>
+                            <div class="col-sm-10">
+                                <select class="form-control selectpicker" id="Module" name="Module">
+                                    <option value="单位"> 单位</option>
+                                    <option value="理事单位"> 理事单位</option>
+                                    <option value="会员单位"> 会员单位</option>
+                                    <option value="市政度机构网站"> 市政度机构网站</option>
+                                    <option value="全国建设系统"> 全国建设系统</option>
+                                    <option value="本市相关部门"> 本市相关部门</option>
+                                    <option value="相关行业单位"> 相关行业单位</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">单位名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Name" placeholder="请输入真实姓名（必填）" id="Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">链接地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Link" placeholder="请输入链接地址（必填）" id="Link" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">备注</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="Remark" placeholder="请输入备注（选填）" id="Remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default save-info">保存</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    AddTable({
+        placeholder: "搜索单位名称",
+        addCallback: function () {
+            $("#id").val("");
+            $("#Name").val('');
+            $("#Link").val('');
+            $("#Remark").val('');
+            $("#Module").selectpicker('val', "单位");
+            $('#Modal').modal('show');
+        }
+    });
+    WOEvents.Update = function (row) {
+        $("#id").val(row.ID);
+        $("#Name").val(row.Name);
+        $("#Link").val(row.Link);
+        $("#Remark").val(row.Remark);
+        $("#Module").selectpicker('val', row.Module);
+        $('#Modal').modal('show');
+    }
+    WOEvents.Delete = function (row) {
+        MyFWUnity.CustomCommon.Delete("UnitLink", row.ID, function () {
+            $("#table").bootstrapTable('refresh');
+        })
+    }
+
+    $(function () {
+        $(".save-info").click(function () {
+            MyFWUnity.CustomCommon.AddOrUpdate("Form", "UnitLink", null, function () {
+                $('#Modal').modal('hide');
+                $("#table").bootstrapTable('refresh');
+            })
+        });
+     
+    });
+
+
+</script>
